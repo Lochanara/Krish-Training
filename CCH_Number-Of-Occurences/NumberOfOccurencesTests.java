@@ -23,11 +23,12 @@ public class NumberOfOccurencesTests {
     @Test
     public void sortWithOneMissingNumberTest() {
 
-        char[] sequence = {'a','a','b'};
+        char[] sequence = {'a','A','b','C','C','c'};
         HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
         HashMap<Character, Integer> AssertCharacterIntegerHashMap = new HashMap<Character, Integer>() {{
             put('a', 2);
             put('b', 1);
+            put('c', 3);
         }};
         assertEquals(AssertCharacterIntegerHashMap.toString(),characterIntegerHashMap.toString());
 
@@ -36,52 +37,15 @@ public class NumberOfOccurencesTests {
     @Test
     public void sortWithMultipleMissingNumberTest() {
 
-        char[] sequence = {'a','a','b'};
+        char[] sequence = {'c','c','C','Z','z','q'};
         HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
         HashMap<Character, Integer> AssertCharacterIntegerHashMap = new HashMap<Character, Integer>() {{
-            put('a', 2);
-            put('b', 1);
+            put('c', 3);
+            put('q', 1);
+            put('z', 2);
         }};
         assertEquals(AssertCharacterIntegerHashMap.toString(),characterIntegerHashMap.toString());
 
     }
 
-    @Test
-    public void FindMissingNumberTest() {
-
-        char[] sequence = {'a','a','b'};
-        HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
-        HashMap<Character, Integer> AssertCharacterIntegerHashMap = new HashMap<Character, Integer>() {{
-            put('a', 2);
-            put('b', 1);
-        }};
-        assertEquals(AssertCharacterIntegerHashMap.toString(),characterIntegerHashMap.toString());
-
-    }
-
-    @Test
-    public void FindMultipleMissingNumberTest() {
-
-        char[] sequence = {'a','a','b'};
-        HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
-        HashMap<Character, Integer> AssertCharacterIntegerHashMap = new HashMap<Character, Integer>() {{
-            put('a', 2);
-            put('b', 1);
-        }};
-        assertEquals(AssertCharacterIntegerHashMap.toString(),characterIntegerHashMap.toString());
-
-    }
-
-    @Test
-    public void FindNoMissingNumberTest() {
-
-        char[] sequence = {'a','a','b'};
-        HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
-        HashMap<Character, Integer> AssertCharacterIntegerHashMap = new HashMap<Character, Integer>() {{
-            put('a', 2);
-            put('b', 1);
-        }};
-        assertEquals(AssertCharacterIntegerHashMap.toString(),characterIntegerHashMap.toString());
-
-    }
 }
