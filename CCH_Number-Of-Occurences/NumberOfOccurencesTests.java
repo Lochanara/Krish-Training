@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class NumberOfOccurencesTests {
 
     @Test
-    public void sortTest() {
+    public void sortAllLowercaseSequenceTest() {
 
         char[] sequence = {'a','a','b'};
         HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
@@ -21,7 +21,7 @@ public class NumberOfOccurencesTests {
     }
 
     @Test
-    public void sortWithOneMissingNumberTest() {
+    public void sortAllLowercaseAndUpperaseSequenceTest() {
 
         char[] sequence = {'a','A','b','C','C','c'};
         HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
@@ -35,7 +35,7 @@ public class NumberOfOccurencesTests {
     }
 
     @Test
-    public void sortWithMultipleMissingNumberTest() {
+    public void sortNonAlphabeticSequenceTest() {
 
         char[] sequence = {'c','c','C','Z','z','q'};
         HashMap<Character, Integer> characterIntegerHashMap = NumberOfOccurences.getOccurences(sequence);
