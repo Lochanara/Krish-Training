@@ -70,8 +70,6 @@ public class MissingNumber {
 
         for (String s : sequenceStringArray) {
 
-            System.out.println(s.trim());
-
             if (!s.trim().matches("\\d+")) {
 
                 throw new InvalidSequenceException(s);
