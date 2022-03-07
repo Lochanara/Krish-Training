@@ -41,13 +41,11 @@ public class MissingNumber {
         }
 
 
-        System.out.println(Arrays.toString(sequence));
-
         sortArray(sequence);
 
-        System.out.println(Arrays.toString(sequence));
+        String Message = findMissingNumber(sequence);
 
-        findMissingNumber(sequence);
+        System.out.println(Message);
 
     }
 
@@ -109,7 +107,7 @@ public class MissingNumber {
 
     }
 
-    public static void findMissingNumber(int[] sequence) {
+    public static String findMissingNumber(int[] sequence) {
 
         List<Integer> missingNums = new ArrayList<>();
 
@@ -126,19 +124,17 @@ public class MissingNumber {
 
         }
 
-        System.out.println(missingNums);
-
         if (missingNums.size() > 1) {
 
-            System.out.println("More than 1 missing number");
+            return "More than 1 missing number";
 
         } else if (missingNums.size() == 1) {
 
-            System.out.println("Missing number is " + missingNums.get(0));
+            return "Missing number is " + missingNums.get(0);
 
         } else {
 
-            System.out.println("Missing numbers could be " + (sequence[0] - 1) + " or " + (sequence[sequence.length - 1] + 1));
+            return "Missing numbers could be " + (sequence[0] - 1) + " or " + (sequence[sequence.length - 1] + 1);
 
         }
 
