@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -39,7 +38,8 @@ public class NumberOfOccurences {
 
         }
 
-        getOccurences(sequence);
+        HashMap<Character, Integer> characterIntegerHashMap = getOccurences(sequence);
+        System.out.println(characterIntegerHashMap);
 
     }
 
@@ -67,7 +67,7 @@ public class NumberOfOccurences {
 
     }
 
-    public static void getOccurences(char[] sequence) {
+    public static HashMap<Character, Integer> getOccurences(char[] sequence) {
 
         HashMap<Character, Integer> charachterHashMap = new HashMap<>();
 
@@ -86,7 +86,7 @@ public class NumberOfOccurences {
 
         }
 
-        System.out.println(charachterHashMap);
+        return charachterHashMap;
 
     }
 
