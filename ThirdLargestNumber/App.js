@@ -1,4 +1,4 @@
-const scanner = require('readline').createInterface({
+const readLine = require('readline').createInterface({
 
     input: process.stdin,
     output: process.stdout
@@ -7,11 +7,7 @@ const scanner = require('readline').createInterface({
 
 function app() {
 
-    let numberString = "";
-
-    scanner.question("Enter numbers seperated by commas \n", function(input) {
-
-        numberString = input;
+    readLine.question("Enter numbers seperated by commas \n", numberString => {
 
         let numberArray = numberString.split(',');
 
@@ -19,7 +15,7 @@ function app() {
 
         console.log(outputMsg);
         
-        scanner.close();
+        readLine.close();
 
     });
 
