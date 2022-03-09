@@ -92,6 +92,8 @@ public class AdventureGame {
         originator.setSave("Save 6");
         careTaker.add(originator.saveGameSave());
 
+        System.out.println("Most current game save : " + originator.getSave() + "\n");
+
         System.out.println("All available game saves");
 
         for (int i = 0; i < careTaker.getGameSaveListSize(); i ++) {
