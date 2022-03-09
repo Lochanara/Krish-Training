@@ -1,5 +1,3 @@
-import java.util.Locale;
-
 class CourtCase {
 
     private String plaintiff;
@@ -150,11 +148,17 @@ public class Court {
         highCourtHandler.setHander(appealCourtHandler);
         appealCourtHandler.setHander(supremeCourtHandler);
 
-        CourtCase courtcase = new CourtCase("John Doe","theft", "low", "Michael Jackson");
+        CourtCase courtcase = new CourtCase("John Doe","theft", "medium", "Michael Jackson");
         System.out.println(discrictCourtHandler.setCourtCase(courtcase));
 
-        CourtCase courtcase2 = new CourtCase("John Doe","theft", "severe", "Michael Jackson");
+        CourtCase courtcase2 = new CourtCase("John Doe","theft", "high", "Michael Jackson");
         System.out.println(discrictCourtHandler.setCourtCase(courtcase2));
+
+        CourtCase courtcase3 = new CourtCase("John Doe","theft", "severe", "Michael Jackson");
+        System.out.println(discrictCourtHandler.setCourtCase(courtcase3));
+
+        CourtCase courtcase4 = new CourtCase("John Doe","theft", "low", "Michael Jackson");
+        System.out.println(discrictCourtHandler.setCourtCase(courtcase4));
 
     }
 
