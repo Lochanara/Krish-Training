@@ -1,4 +1,4 @@
-const scanner = require('readline').createInterface({
+const readLine = require('readline').createInterface({
 
     input: process.stdin,
     output: process.stdout
@@ -7,11 +7,7 @@ const scanner = require('readline').createInterface({
 
 function app() {
 
-    let wordsString = "";
-
-    scanner.question("Enter both words separated by a comma \n", function(input) {
-
-        wordsString = input;
+    readLine.question("Enter both words separated by a comma \n", wordsString => {
 
         let splitWords = wordsString.split(',');
 
@@ -19,7 +15,7 @@ function app() {
 
         console.log(outputMsg);
         
-        scanner.close();
+        readLine.close();
 
     });
 
