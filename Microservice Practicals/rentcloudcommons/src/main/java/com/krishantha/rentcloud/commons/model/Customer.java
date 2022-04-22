@@ -1,22 +1,19 @@
 package com.krishantha.rentcloud.commons.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name ="customer")
 public class Customer {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
 
-    private String firstName;
-    private String lastName;
-    private String slNumber;
-    private String zipCode;
+    String firstName;
+    String lastName;
+    String slNumber;
+    String zipCode;
 
 
     public int getId() {
