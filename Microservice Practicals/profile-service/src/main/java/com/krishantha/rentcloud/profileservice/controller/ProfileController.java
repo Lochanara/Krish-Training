@@ -15,19 +15,19 @@ public class ProfileController {
     @Autowired
     CustomerService customerService;
 
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    @RequestMapping(value = "/customers", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('create_profile')")
     public Customer save(@RequestBody Customer customer) {
         return customerService.save(customer);
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public Customer fetch(@RequestParam int profileId) {
-        return customerService.fetchById(profileId);
+    @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
+    public Customer fetch(@PathVariable(value="id") int customerId) {
+        return customerService.fetchById(customerId);
     }
 
-    @RequestMapping(value = "/profiles", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ROLE_operator')")
+    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ROLE_admin')")
     public List<Customer> fetch() {
         return customerService.fetchAllProfiles();
     }

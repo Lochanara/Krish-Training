@@ -18,3 +18,5 @@ security:
     client:
       client-id: genshin
       client-secret: impact
+server:
+  port: 8181
