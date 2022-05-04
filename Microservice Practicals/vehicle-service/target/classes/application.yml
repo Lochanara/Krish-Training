@@ -11,5 +11,3 @@ spring:
       ddl-auto: create
   application:
     name: vehicle
-server:
-  port: 9191
