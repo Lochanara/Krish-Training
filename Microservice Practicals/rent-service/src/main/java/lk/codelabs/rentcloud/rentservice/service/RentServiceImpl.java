@@ -1,8 +1,11 @@
 package lk.codelabs.rentcloud.rentservice.service;
 
+import com.netflix.hystrix.HystrixCommand;
 import lk.codelabs.rentcloud.model.customer.Customer;
 import lk.codelabs.rentcloud.model.rent.Rent;
 import lk.codelabs.rentcloud.model.vehicle.Vehicle;
+import lk.codelabs.rentcloud.rentservice.hystrix.CommonHystrixCommand;
+import lk.codelabs.rentcloud.rentservice.hystrix.VehicleCommand;
 import lk.codelabs.rentcloud.rentservice.model.DetailResponse;
 import lk.codelabs.rentcloud.rentservice.repository.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * @author Krishantha Dinesh
@@ -29,6 +34,9 @@ public class RentServiceImpl implements RentService {
 
     @Autowired
     RentRepository rentRepository;
+
+    @Autowired
+    HystrixCommand.Setter setter;
 
     @LoadBalanced
     @Bean
@@ -64,8 +72,7 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
-    public DetailResponse findDetailResponse(int id) {
-
+    public DetailResponse findDetailResponse(int id) throws ExecutionException, InterruptedException {
 
         Rent rent=findById(id);
         Customer customer=getCustomer(rent.getCustomerId());
@@ -73,20 +80,27 @@ public class RentServiceImpl implements RentService {
 
         return new DetailResponse(rent,customer,vehicle);
 
-
     }
 
-    private Customer getCustomer(int customerId){
+    private Customer getCustomer(int customerId) throws ExecutionException, InterruptedException {
 
-        Customer customer=restTemplate.getForObject("http://customer/services/customers/"+customerId,Customer.class);
-        return customer;
+        CommonHystrixCommand<Customer> customerCommonHystrixCommand = new CommonHystrixCommand<Customer>(setter,()-> {
+            return restTemplate.getForObject("http://customer/services/customers/"+customerId,Customer.class);
+        },()->{
+            return new Customer();
+        });
+
+        Future<Customer> futureCustomer = customerCommonHystrixCommand.queue();
+        return futureCustomer.get();
 
     }
 
     private Vehicle getVehicle(int vehicleId){
 
-       return restTemplate.getForObject("http://vehicle/services/vehicles/"+vehicleId,Vehicle.class);
-
+        VehicleCommand vehicleCommand = new VehicleCommand(restTemplate,vehicleId);
+        return vehicleCommand.execute();
+       //return restTemplate.getForObject("http://vehicle/services/vehicles/"+vehicleId,Vehicle.class);
 
     }
+
 }
